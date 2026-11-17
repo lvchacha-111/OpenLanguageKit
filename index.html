@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2efe6">
+  <meta name="description" content="OpenLanguageKit 平假名练习体验页。打开即用，无需安装。">
+  <title>从一个假名开始 · OpenLanguageKit</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f2efe6;
+      --card: #fffdf7;
+      --ink: #202b28;
+      --muted: #68716c;
+      --line: #d9d7cc;
+      --green: #435c4c;
+      --orange: #df633e;
+      --soft: #e5e9df;
+      --serif: "Iowan Old Style", "Baskerville", "Songti SC", "STSong", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible, iframe:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+    .page { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 0; border-bottom: 1px solid var(--line);
+      font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 750; }
+    .brand-mark { width: 22px; height: 22px; border: 1.5px solid var(--green); border-radius: 50%; position: relative; }
+    .brand-mark::after { content: ""; position: absolute; width: 5px; height: 5px; top: 7px; left: 7px; border-radius: 50%; background: var(--orange); }
+    .edition { color: var(--muted); }
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 48px; align-items: end; padding: 58px 0 38px; }
+    .eyebrow { color: var(--green); font-size: 12px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { max-width: 690px; margin: 14px 0 18px; font-family: var(--serif); font-size: clamp(44px, 7vw, 76px); font-weight: 500; letter-spacing: -.055em; line-height: .98; }
+    .intro { max-width: 620px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+    .stamp { justify-self: end; align-self: center; width: 164px; aspect-ratio: 1; border: 1px solid var(--orange); border-radius: 50%; color: var(--orange); display: grid; place-content: center; text-align: center; transform: rotate(8deg); }
+    .stamp strong { font-family: var(--serif); font-size: 40px; font-weight: 500; line-height: 1; }
+    .stamp span { margin-top: 8px; font-size: 10px; letter-spacing: .14em; }
+    .lesson { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 18px 50px rgba(42, 49, 43, .07); }
+    .lesson-head { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 19px 22px; border-bottom: 1px solid var(--line); }
+    .lesson-title { display: flex; align-items: center; gap: 12px; }
+    .step { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--soft); color: var(--green); font-family: var(--serif); font-size: 18px; }
+    .lesson-title strong { display: block; font-size: 15px; }
+    .lesson-title small { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+    .open-link { color: var(--green); font-size: 13px; font-weight: 650; text-underline-offset: 4px; white-space: nowrap; }
+    iframe { display: block; width: 100%; height: 690px; border: 0; background: var(--card); }
+    .hint { display: flex; gap: 10px; align-items: flex-start; padding: 15px 22px 19px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .hint-mark { color: var(--orange); font-weight: 800; }
+    .details { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; padding: 36px 0 45px; }
+    .detail-card { padding: 21px 0; border-top: 1px solid var(--line); }
+    .detail-card h2 { margin: 0 0 9px; font-family: var(--serif); font-size: 22px; font-weight: 500; }
+    .detail-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .footer { display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid var(--line); padding: 19px 0 28px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .footer p { margin: 0; max-width: 720px; }
+    .footer a { color: var(--green); text-underline-offset: 3px; }
+    @media (max-width: 700px) {
+      .page { width: min(100% - 28px, 560px); }
+      .topbar { padding: 17px 0; }
+      .hero { grid-template-columns: 1fr; gap: 12px; padding: 40px 0 25px; }
+      h1 { max-width: 520px; font-size: clamp(43px, 13vw, 66px); }
+      .intro { font-size: 15px; }
+      .stamp { display: none; }
+      .lesson-head { padding: 15px; align-items: flex-start; }
+      .open-link { padding-top: 9px; font-size: 12px; }
+      iframe { height: 720px; }
+      .hint { padding: 13px 15px 16px; }
+      .details { grid-template-columns: 1fr; gap: 4px; padding: 23px 0 28px; }
+      .footer { display: block; }
+      .footer p + p { margin-top: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#practice" style="position:absolute;left:-9999px;top:auto" onfocus="this.style.left='16px';this.style.top='16px'" onblur="this.style.left='-9999px';this.style.top='auto'">跳到练习</a>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>OpenLanguageKit</span></div>
+      <span class="edition">体验副本 · 01 / 96</span>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <div class="eyebrow">日本語 · 从零开始</div>
+        <h1 id="page-title">从一个假名开始。</h1>
+        <p class="intro">先看清五十音的行与段，再用声音和回想练习把字形记住。点开下方的练习页，就可以直接试。</p>
+      </div>
+      <div class="stamp" aria-label="96 个练习页面之一"><strong>01</strong><span>96 PRACTICE PAGES</span></div>
+    </section>
+
+    <section class="lesson" id="practice" aria-labelledby="lesson-title">
+      <div class="lesson-head">
+        <div class="lesson-title">
+          <span class="step" aria-hidden="true">1</span>
+          <div><strong id="lesson-title">平假名五十音表</strong><small>浏览、听音找字、形近辨认、遮住回想</small></div>
+        </div>
+        <a class="open-link" href="blocks/sound-grid.html?set=kana-hiragana&amp;lang=zh" target="_blank" rel="noreferrer">单独打开 ↗</a>
+      </div>
+      <iframe src="blocks/sound-grid.html?set=kana-hiragana&amp;lang=zh" title="平假名五十音练习"></iframe>
+      <div class="hint"><span class="hint-mark" aria-hidden="true">提示</span><span>试试切换顶部练习模式；也可以开启“儿童版”。在浏览模式中点任意假名可听读音。</span></div>
+    </section>
+
+    <section class="details" aria-label="体验说明">
+      <article class="detail-card">
+        <h2>这页能体验什么</h2>
+        <p>这是一个真实练习组件，不是静态截图。它展示假名的行列规律，并提供听辨、辨形和主动回想模式。</p>
+      </article>
+      <article class="detail-card">
+        <h2>它还不是完整课程</h2>
+        <p>此链接用于快速试用单个练习页面。完整的学习路线与个性化 App，需要结合课程规划器和后续应用开发。</p>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <p>基于 <a href="https://github.com/ywEdAi/OpenLanguageKit">OpenLanguageKit</a>，CC BY-NC 4.0。此副本新增了体验入口与部署工作流；原始课程内容仍在持续审核中。</p>
+      <p><a href="https://creativecommons.org/licenses/by-nc/4.0/">许可说明</a></p>
+    </footer>
+  </main>
+</body>
+</html>

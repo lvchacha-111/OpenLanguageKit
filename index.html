@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f2efe6">
-  <meta name="description" content="OpenLanguageKit 平假名练习体验页。打开即用，无需安装。">
-  <title>从一个假名开始 · OpenLanguageKit</title>
+  <meta name="description" content="体验 OpenLanguageKit 的 10 个语言学习案例，并试用平假名练习页。">
+  <title>10 个案例体验 · OpenLanguageKit</title>
   <style>
     :root {
       color-scheme: light;
@@ -48,6 +48,18 @@
     .stamp { justify-self: end; align-self: center; width: 164px; aspect-ratio: 1; border: 1px solid var(--orange); border-radius: 50%; color: var(--orange); display: grid; place-content: center; text-align: center; transform: rotate(8deg); }
     .stamp strong { font-family: var(--serif); font-size: 40px; font-weight: 500; line-height: 1; }
     .stamp span { margin-top: 8px; font-size: 10px; letter-spacing: .14em; }
+    .cases { padding: 12px 0 42px; }
+    .section-head { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin: 0 0 18px; }
+    .section-head h2 { margin: 0; font-family: var(--serif); font-size: clamp(28px, 4vw, 38px); font-weight: 500; letter-spacing: -.035em; }
+    .section-head p { max-width: 520px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .case-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .case-card { display: block; min-height: 150px; padding: 19px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+    .case-card:hover { transform: translateY(-2px); border-color: #aeb8aa; box-shadow: 0 12px 30px rgba(42, 49, 43, .07); }
+    .case-meta { display: flex; justify-content: space-between; gap: 12px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .04em; }
+    .case-card h3 { margin: 16px 0 7px; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .case-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .case-card .arrow { color: var(--orange); font-size: 18px; }
+    .case-note { margin: 14px 2px 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
     .lesson { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 18px 50px rgba(42, 49, 43, .07); }
     .lesson-head { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 19px 22px; border-bottom: 1px solid var(--line); }
     .lesson-title { display: flex; align-items: center; gap: 12px; }
@@ -72,6 +84,10 @@
       h1 { max-width: 520px; font-size: clamp(43px, 13vw, 66px); }
       .intro { font-size: 15px; }
       .stamp { display: none; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 8px; }
+      .case-grid { grid-template-columns: 1fr; }
+      .case-card { min-height: auto; }
       .lesson-head { padding: 15px; align-items: flex-start; }
       .open-link { padding-top: 9px; font-size: 12px; }
       iframe { height: 720px; }
@@ -88,16 +104,56 @@
   <main class="page">
     <header class="topbar">
       <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>OpenLanguageKit</span></div>
-      <span class="edition">体验副本 · 01 / 96</span>
+      <span class="edition">体验副本 · 10 个现成案例</span>
     </header>
 
     <section class="hero" aria-labelledby="page-title">
       <div>
         <div class="eyebrow">日本語 · 从零开始</div>
-        <h1 id="page-title">从一个假名开始。</h1>
-        <p class="intro">先看清五十音的行与段，再用声音和回想练习把字形记住。点开下方的练习页，就可以直接试。</p>
+        <h1 id="page-title">先从这 10 个案例开始体验。</h1>
+        <p class="intro">从儿童五十音、旅行日语到教师课堂工具，点选案例查看设计并直接试用；下面还附有独立的平假名练习页。</p>
       </div>
-      <div class="stamp" aria-label="96 个练习页面之一"><strong>01</strong><span>96 PRACTICE PAGES</span></div>
+      <div class="stamp" aria-label="10 个现成案例"><strong>10</strong><span>READY-MADE CASES</span></div>
+    </section>
+
+    <section class="cases" aria-labelledby="cases-title">
+      <div class="section-head">
+        <h2 id="cases-title">先试试这 10 个成品案例</h2>
+        <p>每个案例都能查看需求、设计决定，并直接试用核心体验。点卡片会打开 OpenLangKit 官方案例页。</p>
+      </div>
+      <div class="case-grid">
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=dino-kana" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>日语 · 平板 App</span><span class="arrow">↗</span></div><h3>恐龙蛋五十音</h3><p>给喜欢恐龙的孩子做的平假名听音认字游戏。</p>
+        </a>
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=a1-directions" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>英语 · 教师备课页</span><span class="arrow">↗</span></div><h3>A1 在城里找路</h3><p>把问路单元排成 30 分钟课堂，含投影课件与学生练习。</p>
+        </a>
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=izakaya-order" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>日语 · 手机 App</span><span class="arrow">↗</span></div><h3>居酒屋点菜</h3><p>为大阪旅行准备的点菜和听懂店员回应练习。</p>
+        </a>
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=tone-valley" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>中文 · 网页互动工具</span><span class="arrow">↗</span></div><h3>声调山谷</h3><p>用可视化辅助练习普通话声调。</p>
+        </a>
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=hanzi-kitchen" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>中文 · 平板 App</span><span class="arrow">↗</span></div><h3>部件厨房</h3><p>把汉字部件组合变成孩子能玩的识字游戏。</p>
+        </a>
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=commute-ears" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>日语 · 手机 App</span><span class="arrow">↗</span></div><h3>通勤听辨</h3><p>单手操作，练习分辨相近的日语音和长短音。</p>
+        </a>
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=phonics-print" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>英语 · 打印练习纸</span><span class="arrow">↗</span></div><h3>拼读练习纸</h3><p>适合没有平板的课堂，纸面作答并用手机播放声音。</p>
+        </a>
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=email-register" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>英语 · 桌面网页</span><span class="arrow">↗</span></div><h3>邮件分寸</h3><p>练习在商务邮件里表达得清楚、得体。</p>
+        </a>
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=class-infogap" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>英语 · 投影课堂工具</span><span class="arrow">↗</span></div><h3>问路 · 全班双人活动</h3><p>面向大班的问路信息差活动，学生无需个人设备。</p>
+        </a>
+        <a class="case-card" href="https://www.openlangkit.space/cases/view.html?id=family-evidence" target="_blank" rel="noreferrer">
+          <div class="case-meta"><span>英语 · 网页报告</span><span class="arrow">↗</span></div><h3>一页纸的本周记录</h3><p>给家长一页简明报告，看看孩子这周实际会了什么。</p>
+        </a>
+      </div>
+      <p class="case-note">这些是核心体验样例，部分演示内容尚未经过母语者或教师审核。点击卡片后，在官方案例页点“点一下，开始操作”即可启动互动预览。</p>
     </section>
 
     <section class="lesson" id="practice" aria-labelledby="lesson-title">

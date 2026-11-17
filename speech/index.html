@@ -254,7 +254,7 @@
               </div>
               <div class="field wide">
                 <label for="reason">我为什么喜欢他 / 她</label>
-                <textarea id="reason" name="reason" placeholder="先写简单英语关键词，例如：works hard / helps the team / never gives up。"></textarea>
+                <textarea id="reason" name="reason" placeholder="写成完整短句，例如：he works hard / she helps her team / he never gives up。"></textarea>
               </div>
             </div>
             <div class="form-actions">
@@ -330,7 +330,7 @@
         { title: 'Hello, everyone', label: 'OPENING', seconds: 60, prompt: '说出球员的名字，告诉大家你今天要讲谁。加一句简单的开场。', starter: (p) => `Hello, everyone.\nToday I want to talk about ${p.name || '[player name]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} is my favourite basketball player.`, icon: '01' },
         { title: 'Meet the player', label: 'THE PERSON', seconds: 60, prompt: '说国家或城市、球队、场上位置。只说你确认过的资料。', starter: (p) => `${p.name || '[Player name]'} is from ${p.country || '[country or city]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} plays for ${p.team || '[team]'}.\n${p.pronoun === 'she' ? 'Her' : 'His'} position is ${p.position || '[position]'}.` },
         { title: 'How the story began', label: 'THE BEGINNING', seconds: 60, prompt: '分享他 / 她小时候或开始打篮球的一个真实故事。资料不确定时，可改成你如何认识这位球员。', starter: (p) => `I first learned about ${p.name || 'this player'} when [your story].\nOne interesting fact is [a fact you checked].` },
-        { title: 'Team life', label: 'ON THE TEAM', seconds: 90, prompt: '说说球队和球员在比赛中的角色。可以配一张球衣或球队图片。', starter: (p) => `${p.pronoun === 'she' ? 'She' : 'He'} plays with ${p.team || '[team]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} helps the team by [a checked fact].\nI think a good teammate [your idea].` },
+        { title: 'Team life', label: 'ON THE TEAM', seconds: 90, prompt: '说说球队和球员在比赛中的角色。可以配一张球衣或球队图片。', starter: (p) => `${p.pronoun === 'she' ? 'She' : 'He'} plays for ${p.team || '[team]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} helps the team by [a checked fact].\nI think a good teammate [your idea].` },
         { title: 'A skill I love', label: 'THE GAME', seconds: 90, prompt: '选一项你最喜欢的球技，解释它看起来怎样、为什么喜欢。', starter: (p) => `My favourite skill is ${p.skill || '[skill]'}.\nIt looks [fast / strong / exciting].\nI like it because [your reason].` },
         { title: 'A special moment', label: 'THE BIG MOMENT', seconds: 90, prompt: '讲一个比赛、奖项或故事：先说发生了什么，再说你为什么记得。请核对事实。', starter: (p) => `One special moment was ${p.moment || '[a game, award, or story]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} [what happened].\nI remember it because [my reason].` },
         { title: 'Why I admire this player', label: 'MY REASON', seconds: 90, prompt: '把球员和你自己连起来：你喜欢什么？你想学到什么？', starter: (p) => `I admire ${p.name || 'this player'} because ${p.reason || '[your reason]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} teaches me to [something you want to learn].\nI also want to [your own goal].` },

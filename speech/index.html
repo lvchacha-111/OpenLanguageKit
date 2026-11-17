@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3efe4">
+  <meta name="description" content="给 8 岁左右、英语 A1 学习者使用的 10 分钟篮球演讲排练页。">
+  <title>我的篮球英雄 · 10 分钟演讲练习</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f3efe4;
+      --paper-deep: #eae3d3;
+      --card: #fffdf7;
+      --ink: #182a32;
+      --muted: #637177;
+      --line: #d7d3c6;
+      --orange: #eb6b3a;
+      --orange-dark: #b94a27;
+      --blue: #436e7b;
+      --yellow: #e7c95d;
+      --green: #3f6657;
+      --shadow: 0 18px 45px rgba(25, 42, 49, .08);
+      --display: "Arial Narrow", "Franklin Gothic Condensed", Impact, sans-serif;
+      --body: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 10% 12%, rgba(231, 201, 93, .12), transparent 25rem),
+        repeating-linear-gradient(0deg, rgba(24, 42, 50, .018) 0, rgba(24, 42, 50, .018) 1px, transparent 1px, transparent 5px),
+        var(--paper);
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
+    button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .skip { position: absolute; left: -9999px; z-index: 10; padding: 10px 14px; background: white; }
+    .skip:focus { left: 12px; top: 12px; }
+    .shell { width: min(1240px, calc(100% - 44px)); margin: 0 auto; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .brand-ball { width: 27px; height: 27px; display: grid; place-items: center; border-radius: 50%; background: var(--orange); color: #fff8ec; font-size: 16px; box-shadow: inset -3px -3px 0 rgba(0,0,0,.12); }
+    .crumb { color: var(--muted); font-size: 12px; text-decoration: none; text-underline-offset: 4px; }
+    .hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 30px; align-items: center; padding: 48px 0 34px; }
+    .eyebrow, .kicker { margin: 0; color: var(--orange-dark); font-size: 11px; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { max-width: 850px; margin: 12px 0 12px; font-family: var(--display); font-size: clamp(52px, 8vw, 94px); font-stretch: condensed; font-weight: 900; letter-spacing: -.045em; line-height: .9; text-transform: uppercase; }
+    .hero-copy { max-width: 670px; margin: 18px 0 0; color: var(--muted); font-size: 15px; line-height: 1.75; }
+    .hero-art { display: grid; place-items: center; min-height: 220px; position: relative; }
+    .court-mark { position: absolute; width: 220px; height: 220px; border: 1px solid rgba(67, 110, 123, .35); border-radius: 50%; }
+    .court-mark::before { content: ""; position: absolute; top: 50%; left: -1px; right: -1px; border-top: 1px solid rgba(67, 110, 123, .35); }
+    .court-mark::after { content: ""; position: absolute; left: 50%; top: -1px; bottom: -1px; border-left: 1px solid rgba(67, 110, 123, .35); }
+    .ball { position: relative; width: 132px; height: 132px; border-radius: 50%; background: var(--orange); box-shadow: 0 16px 25px rgba(185, 74, 39, .18), inset -9px -10px 0 rgba(105, 48, 26, .13); overflow: hidden; transform: rotate(-17deg); }
+    .ball::before, .ball::after { content: ""; position: absolute; border: 2px solid #302923; opacity: .88; }
+    .ball::before { inset: -4px 39px; border-radius: 50%; }
+    .ball::after { inset: 39px -4px; border-radius: 50%; }
+    .ball-seam { position: absolute; z-index: 1; width: 160px; height: 2px; top: 50%; left: -14px; background: #302923; transform: rotate(45deg); }
+    .hero-stamp { position: absolute; right: 0; bottom: 12px; display: grid; place-content: center; width: 92px; height: 92px; border: 2px solid var(--ink); border-radius: 50%; background: var(--yellow); text-align: center; transform: rotate(10deg); }
+    .hero-stamp strong { font-family: var(--display); font-size: 29px; line-height: .9; }
+    .hero-stamp span { margin-top: 5px; font-size: 8px; font-weight: 850; letter-spacing: .1em; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(310px, .75fr); gap: 20px; align-items: start; }
+    .panel { border: 1px solid var(--line); border-radius: 16px; background: var(--card); box-shadow: var(--shadow); }
+    .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 22px 24px 18px; border-bottom: 1px solid var(--line); }
+    .panel-head h2 { margin: 4px 0 0; font-family: var(--display); font-size: 30px; font-weight: 850; letter-spacing: -.02em; line-height: 1; text-transform: uppercase; }
+    .panel-head p { max-width: 300px; margin: 2px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .panel-body { padding: 22px 24px 24px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field.wide { grid-column: 1 / -1; }
+    .field label { color: var(--ink); font-size: 12px; font-weight: 800; }
+    .field small { color: var(--muted); font-size: 11px; line-height: 1.45; }
+    input, select, textarea { width: 100%; border: 1px solid #c9c7bd; border-radius: 9px; background: #fffefa; color: var(--ink); }
+    input, select { min-height: 44px; padding: 10px 12px; }
+    textarea { min-height: 82px; padding: 12px; line-height: 1.55; resize: vertical; }
+    input::placeholder, textarea::placeholder { color: #9ba2a0; }
+    .form-actions { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-top: 20px; }
+    .local-note { color: var(--muted); font-size: 11px; }
+    .button { display: inline-flex; justify-content: center; align-items: center; gap: 9px; min-height: 45px; padding: 11px 17px; border: 0; border-radius: 9px; cursor: pointer; font-size: 13px; font-weight: 850; transition: transform .16s ease, filter .16s ease; }
+    .button:hover { transform: translateY(-1px); filter: brightness(1.03); }
+    .button.primary { background: var(--ink); color: #fffdf7; box-shadow: 0 5px 0 #0e1c22; }
+    .button.orange { background: var(--orange); color: #2a211b; box-shadow: 0 5px 0 #bf4f2d; }
+    .button.ghost { min-height: 38px; padding: 8px 11px; border: 1px solid var(--line); background: transparent; color: var(--ink); font-size: 11px; box-shadow: none; }
+    .button:active { transform: translateY(2px); box-shadow: none !important; }
+    .coach { position: sticky; top: 14px; overflow: hidden; }
+    .timer-panel { padding: 22px 24px 21px; background: var(--ink); color: var(--paper); }
+    .timer-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .timer-top .kicker { color: var(--yellow); }
+    .timer-mode { color: rgba(243,239,228,.7); font-size: 10px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+    .clock { margin: 14px 0 4px; font-family: var(--display); font-size: clamp(62px, 7vw, 82px); font-variant-numeric: tabular-nums; font-weight: 900; letter-spacing: .015em; line-height: .9; }
+    .timer-caption { min-height: 20px; color: rgba(243,239,228,.75); font-size: 12px; }
+    .progress-track { height: 7px; margin: 18px 0; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.15); }
+    .progress-fill { width: 0; height: 100%; border-radius: inherit; background: var(--yellow); transition: width .3s linear; }
+    .timer-actions { display: flex; gap: 8px; }
+    .timer-actions .button { flex: 1; }
+    .route { padding: 20px 24px 22px; }
+    .route-title { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+    .route-title h3 { margin: 0; font-family: var(--display); font-size: 20px; letter-spacing: .02em; text-transform: uppercase; }
+    .route-title span { color: var(--muted); font-size: 11px; }
+    .route-list { display: grid; gap: 7px; list-style: none; margin: 0; padding: 0; }
+    .route-item { display: grid; grid-template-columns: 32px 1fr auto; gap: 10px; align-items: center; padding: 9px 10px; border: 1px solid transparent; border-radius: 9px; color: var(--muted); font-size: 12px; transition: background .2s ease, border-color .2s ease; }
+    .route-item.active { border-color: rgba(235,107,58,.35); background: #fff1e8; color: var(--ink); }
+    .route-item.done { color: var(--green); }
+    .route-num { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; background: var(--paper-deep); color: var(--ink); font-size: 11px; font-weight: 900; }
+    .route-item.active .route-num { background: var(--orange); color: white; }
+    .route-time { font-size: 10px; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .practice-section { padding: 34px 0 12px; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin: 0 0 16px; }
+    .section-heading h2 { margin: 4px 0 0; font-family: var(--display); font-size: clamp(30px, 4vw, 42px); font-weight: 900; letter-spacing: -.02em; line-height: .98; text-transform: uppercase; }
+    .section-heading p { max-width: 400px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .talk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .talk-card { position: relative; overflow: hidden; min-height: 220px; padding: 19px 20px 18px; border: 1px solid var(--line); border-radius: 13px; background: var(--card); }
+    .talk-card::after { content: attr(data-number); position: absolute; right: -1px; bottom: -23px; color: rgba(67,110,123,.06); font-family: var(--display); font-size: 112px; font-weight: 900; line-height: 1; pointer-events: none; }
+    .talk-card.is-active { border-color: var(--orange); box-shadow: 0 0 0 2px rgba(235,107,58,.16); }
+    .talk-card.is-done { border-color: rgba(63,102,87,.45); }
+    .talk-meta { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+    .talk-label { color: var(--orange-dark); font-size: 10px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+    .talk-time { padding: 5px 8px; border-radius: 99px; background: var(--paper-deep); color: var(--ink); font-size: 10px; font-weight: 850; }
+    .talk-card h3 { position: relative; z-index: 1; margin: 13px 0 8px; font-size: 17px; font-weight: 850; }
+    .talk-prompt { position: relative; z-index: 1; margin: 0 0 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .talk-card textarea { position: relative; z-index: 1; min-height: 80px; background: rgba(255,254,250,.88); font-size: 13px; }
+    .card-actions { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 10px; }
+    .listen { border: 0; background: transparent; color: var(--blue); cursor: pointer; font-size: 11px; font-weight: 850; text-decoration: underline; text-underline-offset: 3px; }
+    .mark-done { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); cursor: pointer; font-size: 11px; }
+    .mark-done input { width: 16px; min-height: 16px; height: 16px; accent-color: var(--green); }
+    .qa-panel { display: grid; grid-template-columns: .85fr 1.15fr; gap: 20px; margin: 18px 0 34px; padding: 22px 24px; border-radius: 14px; background: var(--blue); color: #f9f6eb; }
+    .qa-panel h2 { margin: 0 0 8px; font-family: var(--display); font-size: 25px; line-height: 1; text-transform: uppercase; }
+    .qa-panel p { margin: 0; color: rgba(249,246,235,.8); font-size: 12px; line-height: 1.65; }
+    .qa-list { display: grid; gap: 9px; }
+    .qa-item { padding: 10px 12px; border: 1px solid rgba(255,255,255,.22); border-radius: 8px; background: rgba(255,255,255,.08); }
+    .qa-q { display: block; font-size: 13px; font-weight: 850; }
+    .qa-a { display: block; margin-top: 4px; color: rgba(249,246,235,.78); font-size: 12px; }
+    .last-take { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin: 18px 0 35px; padding: 18px 20px; border: 1px dashed #b6b4a8; border-radius: 12px; background: rgba(255,253,247,.55); }
+    .last-take strong { display: block; font-size: 13px; }
+    .last-take p { margin: 4px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .take-state { color: var(--green); font-size: 12px; font-weight: 850; }
+    details.parent-note { margin: 0 0 34px; border-top: 1px solid var(--line); padding: 15px 0; color: var(--muted); }
+    details.parent-note summary { color: var(--ink); cursor: pointer; font-size: 12px; font-weight: 850; }
+    details.parent-note p { max-width: 900px; margin: 11px 0 0; font-size: 12px; line-height: 1.75; }
+    footer { display: flex; justify-content: space-between; gap: 18px; border-top: 1px solid var(--line); padding: 16px 0 26px; color: var(--muted); font-size: 10px; line-height: 1.7; }
+    footer p { max-width: 790px; margin: 0; }
+    footer a { color: var(--blue); }
+    .toast { position: fixed; right: 20px; bottom: 20px; z-index: 20; max-width: min(360px, calc(100% - 40px)); padding: 12px 15px; border-radius: 9px; background: var(--ink); color: var(--paper); box-shadow: var(--shadow); font-size: 12px; opacity: 0; transform: translateY(9px); pointer-events: none; transition: .2s ease; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: minmax(0,1fr) 190px; gap: 8px; }
+      .hero-art { min-height: 185px; }
+      .court-mark { width: 175px; height: 175px; }
+      .ball { width: 108px; height: 108px; }
+      .layout { grid-template-columns: 1fr; }
+      .coach { position: static; }
+      .timer-panel { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 18px; }
+      .timer-top, .clock, .timer-caption, .progress-track { grid-column: 1; }
+      .timer-actions { grid-column: 2; grid-row: 1 / span 4; width: 190px; flex-direction: column; }
+      .route { padding-top: 15px; }
+    }
+    @media (max-width: 600px) {
+      .shell { width: min(100% - 26px, 500px); }
+      .topbar { padding: 15px 0; }
+      .hero { grid-template-columns: 1fr; padding: 33px 0 25px; }
+      h1 { max-width: 500px; font-size: clamp(48px, 15vw, 76px); }
+      .hero-copy { max-width: 460px; font-size: 13px; }
+      .hero-art { display: none; }
+      .panel-head { display: block; padding: 18px 17px 15px; }
+      .panel-head p { margin-top: 8px; }
+      .panel-body { padding: 18px 17px 20px; }
+      .form-grid { grid-template-columns: 1fr; gap: 13px; }
+      .field.wide { grid-column: auto; }
+      .form-actions { align-items: stretch; flex-direction: column; }
+      .local-note { order: 2; }
+      .timer-panel { display: block; padding: 20px 18px; }
+      .clock { font-size: 68px; }
+      .timer-actions { width: auto; flex-direction: row; }
+      .route { padding: 17px 16px 19px; }
+      .route-list { grid-template-columns: 1fr 1fr; }
+      .route-item { grid-template-columns: 27px 1fr; gap: 7px; padding: 8px 6px; font-size: 10px; }
+      .route-time { grid-column: 2; }
+      .route-num { width: 24px; height: 24px; grid-row: span 2; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 9px; }
+      .talk-grid { grid-template-columns: 1fr; }
+      .talk-card { min-height: 205px; }
+      .qa-panel { grid-template-columns: 1fr; gap: 14px; padding: 19px; }
+      .last-take { align-items: stretch; flex-direction: column; }
+      footer { display: block; }
+      footer p + p { margin-top: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#builder">跳到演讲准备</a>
+  <header class="shell topbar">
+    <a class="brand" href="../"><span class="brand-ball" aria-hidden="true">●</span> OPENLANGUAGEKIT · FIELD TEST</a>
+    <a class="crumb" href="../">← 返回体验首页</a>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">ENGLISH A1 · 8 YEARS OLD · 10 MINUTES</p>
+        <h1 id="page-title">My Basketball Hero</h1>
+        <p class="hero-copy">一位球员，八段故事。先整理真实信息，再用简单英语把十分钟的演讲讲出来。你可以填资料、写提词卡、听句型示范，再开计时器练一遍。</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="court-mark"></div>
+        <div class="ball"><span class="ball-seam"></span></div>
+        <div class="hero-stamp"><strong>10:00</strong><span>ON THE COURT</span></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="panel" id="builder" aria-labelledby="builder-title">
+        <div class="panel-head">
+          <div><p class="kicker">01 / BUILD YOUR TALK</p><h2 id="builder-title">先认识这位球员</h2></div>
+          <p>只填你确认过的资料。还不知道的地方先留空，和家长一起查清楚再讲。</p>
+        </div>
+        <div class="panel-body">
+          <form id="player-form">
+            <div class="form-grid">
+              <div class="field">
+                <label for="player">球员姓名 <span aria-hidden="true">*</span></label>
+                <input id="player" name="player" autocomplete="off" placeholder="例如：Stephen Curry" required>
+                <small>名字会自动放进英语句型里。</small>
+              </div>
+              <div class="field">
+                <label for="pronoun">代词</label>
+                <select id="pronoun" name="pronoun"><option value="he">He / His</option><option value="she">She / Her</option></select>
+                <small>按孩子选的球员调整。</small>
+              </div>
+              <div class="field">
+                <label for="country">国家或城市</label>
+                <input id="country" name="country" autocomplete="off" placeholder="资料确认后填写">
+              </div>
+              <div class="field">
+                <label for="team">球队</label>
+                <input id="team" name="team" autocomplete="off" placeholder="现在或最喜欢的一支球队">
+              </div>
+              <div class="field">
+                <label for="position">场上位置</label>
+                <input id="position" name="position" autocomplete="off" placeholder="例如：guard / forward / center">
+              </div>
+              <div class="field">
+                <label for="skill">最喜欢的球技</label>
+                <input id="skill" name="skill" autocomplete="off" placeholder="例如：shooting / passing">
+              </div>
+              <div class="field wide">
+                <label for="moment">一个喜欢的比赛、奖项或故事</label>
+                <input id="moment" name="moment" autocomplete="off" placeholder="用英语关键词填写一个核实过的比赛或奖项">
+              </div>
+              <div class="field wide">
+                <label for="reason">我为什么喜欢他 / 她</label>
+                <textarea id="reason" name="reason" placeholder="先写简单英语关键词，例如：works hard / helps the team / never gives up。"></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <span class="local-note">资料只保存在这台设备的浏览器里，不会发送到服务器。</span>
+              <button class="button primary" type="submit">生成我的八段提词卡 <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <aside class="panel coach" aria-label="十分钟排练计时器">
+        <div class="timer-panel">
+          <div class="timer-top"><p class="kicker">02 / REHEARSAL TIMER</p><span class="timer-mode">10 minute run</span></div>
+          <div class="clock" id="clock" aria-live="off">10:00</div>
+          <div class="timer-caption" id="timer-caption" aria-live="polite">准备好后开始；计时器只帮你掌握节奏。</div>
+          <div class="progress-track" role="progressbar" aria-label="演讲计时进度" aria-valuemin="0" aria-valuemax="600" aria-valuenow="0"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="timer-actions">
+            <button class="button orange" id="start-timer" type="button">开始练习</button>
+            <button class="button ghost" id="reset-timer" type="button">重新计时</button>
+          </div>
+        </div>
+        <div class="route">
+          <div class="route-title"><h3>Ten-minute route</h3><span>八段加起来正好 10 分钟</span></div>
+          <ol class="route-list" id="route-list" aria-live="polite"></ol>
+        </div>
+      </aside>
+    </div>
+
+    <section class="practice-section" aria-labelledby="practice-title">
+      <div class="section-heading">
+        <div><p class="kicker">03 / CUE CARDS</p><h2 id="practice-title">Eight parts of the story</h2></div>
+        <p>每段有 1–1.5 分钟目标。提词卡是句框，不是完整讲稿；每段再补 2–4 句简单英语或一张图片，讲清一个细节。</p>
+      </div>
+      <div class="talk-grid" id="talk-grid"></div>
+    </section>
+
+    <section class="qa-panel" aria-labelledby="qa-title">
+      <div>
+        <p class="kicker" style="color:var(--yellow)">04 / A1 QUESTION PRACTICE</p>
+        <h2 id="qa-title">What might a friend ask?</h2>
+        <p>找家长或朋友当听众。回答卡住时，可以先请对方重复问题。</p>
+      </div>
+      <div class="qa-list">
+        <div class="qa-item"><span class="qa-q">Who is your favourite player?</span><span class="qa-a">My favourite player is …</span></div>
+        <div class="qa-item"><span class="qa-q">Why do you like this player?</span><span class="qa-a">I like him / her because …</span></div>
+        <div class="qa-item"><span class="qa-q">What is one thing you learn from this player?</span><span class="qa-a">I learn to …</span></div>
+        <div class="qa-item"><span class="qa-q">Could you say that again, please?</span><span class="qa-a">A useful A1 phrase when you did not hear the question.</span></div>
+      </div>
+    </section>
+
+    <section class="last-take" aria-label="排练记录">
+      <div><strong>第一次完整练习</strong><p>先试讲一遍，再修改。这个页面不会打分，也不会把后一次练习覆盖掉第一次的记录。</p></div>
+      <span class="take-state" id="take-state" aria-live="polite">还没有记录练习</span>
+      <button class="button primary" id="record-take" type="button">我讲完了一遍</button>
+    </section>
+
+    <details class="parent-note">
+      <summary>给家长 / 老师：这个练习页如何使用 OpenLanguageKit</summary>
+      <p>页面按仓库的 8–12 岁英语路线和 A1 交际表达搭建，复用了“自我介绍”和“听不懂时请求重复”这类 A1 句型。仓库把“准备演讲并回答提问”标在 B2，因此这里没有假装孩子一晚就能达到 B2；它把任务拆成八段、使用可替换的 A1 句框，并保留事实核对空间。网页不会自动评判发音或英语水平；球员资料请由成人核对。计时和提词卡适合练习流程，不代表学习掌握度。</p>
+    </details>
+  </main>
+
+  <footer class="shell">
+    <p>基于 <a href="https://github.com/ywEdAi/OpenLanguageKit">OpenLanguageKit</a> 英语课程与教学设计。CC BY-NC 4.0 · 本页面是非商业体验原型。</p>
+    <p>Built for one young speaker · No sign-in · No speech scoring</p>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = 'olk-basketball-talk-v1';
+      const sections = [
+        { title: 'Hello, everyone', label: 'OPENING', seconds: 60, prompt: '说出球员的名字，告诉大家你今天要讲谁。加一句简单的开场。', starter: (p) => `Hello, everyone.\nToday I want to talk about ${p.name || '[player name]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} is my favourite basketball player.`, icon: '01' },
+        { title: 'Meet the player', label: 'THE PERSON', seconds: 60, prompt: '说国家或城市、球队、场上位置。只说你确认过的资料。', starter: (p) => `${p.name || '[Player name]'} is from ${p.country || '[country or city]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} plays for ${p.team || '[team]'}.\n${p.pronoun === 'she' ? 'Her' : 'His'} position is ${p.position || '[position]'}.` },
+        { title: 'How the story began', label: 'THE BEGINNING', seconds: 60, prompt: '分享他 / 她小时候或开始打篮球的一个真实故事。资料不确定时，可改成你如何认识这位球员。', starter: (p) => `I first learned about ${p.name || 'this player'} when [your story].\nOne interesting fact is [a fact you checked].` },
+        { title: 'Team life', label: 'ON THE TEAM', seconds: 90, prompt: '说说球队和球员在比赛中的角色。可以配一张球衣或球队图片。', starter: (p) => `${p.pronoun === 'she' ? 'She' : 'He'} plays with ${p.team || '[team]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} helps the team by [a checked fact].\nI think a good teammate [your idea].` },
+        { title: 'A skill I love', label: 'THE GAME', seconds: 90, prompt: '选一项你最喜欢的球技，解释它看起来怎样、为什么喜欢。', starter: (p) => `My favourite skill is ${p.skill || '[skill]'}.\nIt looks [fast / strong / exciting].\nI like it because [your reason].` },
+        { title: 'A special moment', label: 'THE BIG MOMENT', seconds: 90, prompt: '讲一个比赛、奖项或故事：先说发生了什么，再说你为什么记得。请核对事实。', starter: (p) => `One special moment was ${p.moment || '[a game, award, or story]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} [what happened].\nI remember it because [my reason].` },
+        { title: 'Why I admire this player', label: 'MY REASON', seconds: 90, prompt: '把球员和你自己连起来：你喜欢什么？你想学到什么？', starter: (p) => `I admire ${p.name || 'this player'} because ${p.reason || '[your reason]'}.\n${p.pronoun === 'she' ? 'She' : 'He'} teaches me to [something you want to learn].\nI also want to [your own goal].` },
+        { title: 'Thank you', label: 'CLOSING', seconds: 60, prompt: '用一句话收尾，再谢谢听众。', starter: (p) => `That is why ${p.pronoun === 'she' ? 'she' : 'he'} is my favourite basketball player.\nThank you for listening!` }
+      ];
+      const $ = (id) => document.getElementById(id);
+      const form = $('player-form');
+      const talkGrid = $('talk-grid');
+      const routeList = $('route-list');
+      const clock = $('clock');
+      const fill = $('progress-fill');
+      const progress = document.querySelector('[role="progressbar"]');
+      const caption = $('timer-caption');
+      const toast = $('toast');
+      let toastTimer;
+      let elapsed = 0;
+      let interval = null;
+      let takeCount = 0;
+      let drafts = {};
+
+      function profile() {
+        return {
+          name: $('player').value.trim(),
+          pronoun: $('pronoun').value,
+          country: $('country').value.trim(),
+          team: $('team').value.trim(),
+          position: $('position').value.trim(),
+          skill: $('skill').value.trim(),
+          moment: $('moment').value.trim(),
+          reason: $('reason').value.trim()
+        };
+      }
+      function loadSaved() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+          if (saved.profile) Object.entries(saved.profile).forEach(([key, value]) => { const el = $(key === 'name' ? 'player' : key); if (el && value != null) el.value = value; });
+          drafts = saved.drafts || {};
+          takeCount = saved.takeCount || 0;
+          updateTakeState();
+        } catch (_) { /* Ignore unavailable or invalid local storage. */ }
+      }
+      function save() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ profile: profile(), drafts, takeCount })); } catch (_) { showToast('浏览器没有保存本机资料的权限；这次内容仍可继续使用。'); }
+      }
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+      }
+      function formatTime(seconds) { const s = Math.max(0, seconds); return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; }
+      function currentSectionIndex() {
+        let edge = 0;
+        for (let i = 0; i < sections.length; i++) { edge += sections[i].seconds; if (elapsed < edge) return i; }
+        return sections.length - 1;
+      }
+      function renderTimer() {
+        const remaining = Math.max(0, 600 - elapsed);
+        clock.textContent = formatTime(remaining);
+        fill.style.width = `${(elapsed / 600) * 100}%`;
+        progress.setAttribute('aria-valuenow', String(elapsed));
+        const current = currentSectionIndex();
+        const before = sections.slice(0, current).reduce((sum, s) => sum + s.seconds, 0);
+        caption.textContent = elapsed >= 600 ? '完成一遍！休息一下，再决定要不要重练。' : `现在：${sections[current].title} · 本段还剩 ${formatTime(Math.max(0, before + sections[current].seconds - elapsed))}`;
+        [...routeList.children].forEach((item, i) => {
+          item.classList.toggle('active', i === current && elapsed < 600);
+          item.classList.toggle('done', i < current || elapsed >= 600);
+          const card = document.querySelector(`[data-section="${i}"]`);
+          if (card) { card.classList.toggle('is-active', i === current && elapsed < 600); card.classList.toggle('is-done', i < current || elapsed >= 600); }
+        });
+      }
+      function renderRoute() {
+        routeList.replaceChildren();
+        sections.forEach((section, index) => {
+          const li = document.createElement('li');
+          li.className = 'route-item';
+          const num = document.createElement('span'); num.className = 'route-num'; num.textContent = String(index + 1).padStart(2, '0');
+          const label = document.createElement('span'); label.textContent = section.title;
+          const time = document.createElement('span'); time.className = 'route-time'; time.textContent = formatTime(section.seconds);
+          li.append(num, label, time); routeList.append(li);
+        });
+        renderTimer();
+      }
+      function cardElement(section, index, starter) {
+        const article = document.createElement('article');
+        article.className = 'talk-card'; article.dataset.section = String(index); article.dataset.number = section.icon || String(index + 1).padStart(2, '0');
+        const meta = document.createElement('div'); meta.className = 'talk-meta';
+        const label = document.createElement('span'); label.className = 'talk-label'; label.textContent = `${String(index + 1).padStart(2, '0')} / ${section.label}`;
+        const time = document.createElement('span'); time.className = 'talk-time'; time.textContent = `${Math.floor(section.seconds / 60)}:${String(section.seconds % 60).padStart(2, '0')} MIN`;
+        meta.append(label, time);
+        const heading = document.createElement('h3'); heading.textContent = section.title;
+        const prompt = document.createElement('p'); prompt.className = 'talk-prompt'; prompt.textContent = section.prompt;
+        const area = document.createElement('textarea'); area.setAttribute('aria-label', `${section.title} 的英语提词卡`); area.value = drafts[index] || starter;
+        area.addEventListener('input', () => { drafts[index] = area.value; save(); });
+        const actions = document.createElement('div'); actions.className = 'card-actions';
+        const listen = document.createElement('button'); listen.type = 'button'; listen.className = 'listen'; listen.textContent = '▶ 听示范';
+        listen.addEventListener('click', () => speak(area.value));
+        const doneLabel = document.createElement('label'); doneLabel.className = 'mark-done';
+        const check = document.createElement('input'); check.type = 'checkbox'; check.setAttribute('aria-label', `标记 ${section.title} 已练习`);
+        check.addEventListener('change', () => { article.classList.toggle('is-done', check.checked); });
+        const doneText = document.createElement('span'); doneText.textContent = '练过这一段'; doneLabel.append(check, doneText);
+        actions.append(listen, doneLabel);
+        article.append(meta, heading, prompt, area, actions);
+        return article;
+      }
+      function renderTalk() {
+        const p = profile();
+        talkGrid.replaceChildren(...sections.map((section, index) => cardElement(section, index, section.starter(p))));
+        renderRoute();
+      }
+      function speak(text) {
+        if (!('speechSynthesis' in window)) { showToast('这个浏览器暂不支持朗读；可以直接读提词卡练习。'); return; }
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US'; utterance.rate = 0.82;
+        window.speechSynthesis.speak(utterance);
+      }
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!$('player').value.trim()) { $('player').focus(); return; }
+        renderTalk(); save();
+        $('practice-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        showToast('提词卡已更新。黄色格子里的事实记得先核对。');
+      });
+      form.addEventListener('input', save);
+      form.addEventListener('change', save);
+      $('start-timer').addEventListener('click', () => {
+        if (elapsed >= 600) elapsed = 0;
+        if (interval) { clearInterval(interval); interval = null; $('start-timer').textContent = '继续练习'; caption.textContent = '计时已暂停。'; return; }
+        $('start-timer').textContent = '暂停';
+        interval = setInterval(() => {
+          elapsed = Math.min(600, elapsed + 1); renderTimer();
+          if (elapsed >= 600) { clearInterval(interval); interval = null; $('start-timer').textContent = '再练一遍'; }
+        }, 1000);
+        renderTimer();
+      });
+      $('reset-timer').addEventListener('click', () => {
+        clearInterval(interval); interval = null; elapsed = 0; $('start-timer').textContent = '开始练习'; renderTimer();
+      });
+      function updateTakeState() {
+        $('take-state').textContent = takeCount ? `已记下 ${takeCount} 次完整练习；第一次记录保留` : '还没有记录练习';
+        $('record-take').textContent = takeCount ? '我又讲完了一遍' : '我讲完了一遍';
+      }
+      $('record-take').addEventListener('click', () => {
+        takeCount += 1; save(); updateTakeState();
+        showToast(takeCount === 1 ? '第一次练习已记录。修改后可以再练一遍。' : '第二次练习已单独记录，第一次仍保留。');
+      });
+      loadSaved();
+      renderTalk();
+    })();
+  </script>
+</body>
+</html>
